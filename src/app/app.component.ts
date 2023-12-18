@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -17,4 +19,11 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class AppComponent {
   title = 'simple-crm';
+  firestore: Firestore = inject(Firestore);
+  items$: Observable<any[]>;
+
+  constructor() {
+    const usersCollection = collection(this.firestore, 'users')
+    this.items$ = collectionData(usersCollection);
+  }
 }
