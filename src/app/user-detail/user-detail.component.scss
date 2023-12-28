@@ -1,0 +1,63 @@
+mat-card {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.user-detail-header {
+    min-height: 250px;
+    background-color: #F62901;
+    color: white;
+
+}
+
+
+.img-container {
+    display: flex;
+    align-items: flex-end;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+    min-height: 30vh;
+    padding-bottom: 8px;
+    position: relative;
+
+    .user-img {
+        height: 120px;
+        width: 120px;
+        object-fit: contain;
+        border-radius: 50%;
+        background-color: #F62901;
+    }
+
+    .user-first-info-container {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        height: 120px;
+        margin-left: 16px;
+
+        h2 {
+            margin-bottom: 0;
+        }
+
+        .name-container {
+            display: flex;
+            gap: 4px;
+
+            span {
+                font-size: 24px;
+                font-weight: 600;
+            }
+        }
+        
+        .email-container{
+    
+            span{
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+    }
+
+
+}

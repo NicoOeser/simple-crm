@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button'; 
@@ -16,7 +17,7 @@ import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule, MatProgressBarModule, MatCardModule, ],
+  imports: [ CommonModule, MatIconModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule, MatProgressBarModule, MatCardModule, ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
@@ -27,7 +28,7 @@ export class UserComponent implements OnInit{
   allUsers = Array();
 
 
-  constructor(public dialog: MatDialog, private firestore: Firestore) {}
+  constructor(public dialog: MatDialog, private firestore: Firestore, private router: Router) {}
 
   ngOnInit() {
     this.getUsers();
@@ -37,22 +38,27 @@ export class UserComponent implements OnInit{
     const userCollection = collection(this.firestore, 'users');
     const q = query(userCollection);
     const unsubscribe = onSnapshot(q, (snapshot) => {
+      this.allUsers = snapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+      });
+  
+      console.log(this.allUsers);
+  
       snapshot.docChanges().forEach((change) => {
-        if (change.type === "added") {
-            this.allUsers.push(change.doc.data());
-          }
         if (change.type === "modified") {
-            console.log("Modified user: ", change.doc.data());
+          console.log("Modified user: ", change.doc.data());
         }
         if (change.type === "removed") {
-            console.log("Removed user: ", change.doc.data());
+          console.log("Removed user: ", change.doc.data());
         }
-        
       });
-    });   
-    console.log(this.allUsers);
-    
+    });
   }
+
+  navigateToUser(userId: string) {
+    this.router.navigate(['/user', userId]);
+  }
+  
 
   openDialog() {
     this.dialog.open(DialogAddUserComponent);
