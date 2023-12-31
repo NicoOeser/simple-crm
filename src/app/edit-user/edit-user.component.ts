@@ -1,6 +1,5 @@
 import { Component, inject} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,7 +29,7 @@ export class EditUserComponent {
 
   async saveUser() {
     this.isLoading = true;
-    const userRef = await doc(this.firestore, 'users', this.userId);
+    const userRef = doc(this.firestore, 'users', this.userId);
     await updateDoc(userRef, this.user.toJson());
     this.closeDialog();
     this.isLoading = false;

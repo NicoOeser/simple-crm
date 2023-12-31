@@ -14,11 +14,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 @Component({
   selector: 'app-dialog-add-user',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatDialogModule, MatButtonModule, FormsModule,MatProgressBarModule],
+  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatDialogModule, MatButtonModule, FormsModule, MatProgressBarModule],
   providers: [MatDatepickerModule, MatNativeDateModule,],
   templateUrl: './dialog-add-user.component.html',
   styleUrl: './dialog-add-user.component.scss'
 })
+
 export class DialogAddUserComponent {
   user = new User;
   birthDate!: Date;
