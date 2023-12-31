@@ -24,7 +24,6 @@ export class User {
         return {
             firstName: this.firstName,
             lastName: this.lastName,
-            dateOfBirth: this.birthDate,
             street: this.street,
             houseNo: this.houseNo,
             zipCode: this.zipCode,

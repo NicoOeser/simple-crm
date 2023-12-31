@@ -30,14 +30,9 @@ export class DialogAddUserComponent {
     this.userCollection = collection(this.firestore, 'users');
   }
 
-  noClick(): void {
-  }
-
   async saveUser() {
     this.isLoading = true;
     this.user.birthDate = this.birthDate.getTime();
-    console.log(this.user);
-
     const docRef = await addDoc(this.userCollection, this.user.toJson());
     this.isLoading = false;
     this.closeDialog();

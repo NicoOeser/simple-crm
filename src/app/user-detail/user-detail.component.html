@@ -1,12 +1,21 @@
 <section>
 
     <mat-card class="user-detail-header">
+
         <div class="img-container">
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="user-detail-edit">
+                <mat-icon fontIcon="more_vert"></mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="editUserDialog()">Edit User</button>
+            </mat-menu>
+
             <img class="user-img" src="./assets/img/profil.png" alt="">
             <div class="user-first-info-container">
                 <div class="name-container">
                     <span>
-                        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+                        <h1>{{ user.firstName }} {{ user.lastName }}</h1>
                     </span>
                 </div>
                 <div class="email-container">
@@ -19,7 +28,7 @@
     <mat-card class="mt-32">
         <mat-card-header>
             <mat-card-title>
-                Address
+                <h1>Address</h1>
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
