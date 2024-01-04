@@ -9,12 +9,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { EditUserComponent } from '../edit-user/edit-user.component';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, MatIconModule, MatMenuModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
 })

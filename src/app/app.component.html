@@ -2,13 +2,25 @@
   <mat-drawer #drawer class="sidenav" [opened]="true" mode="side">
     <div class="logo-contianer">
       <img class="logo" src="./assets/img/logo.png">
+      <div class="companie"> 
+        <span>CRM S&O-Shop</span>
+      </div>
     </div>
 
     <ul class="ul-menu">
       <li routerLink="/" routerLinkActive="router-link-active">
-        <mat-icon>space_dashboard</mat-icon>Dashboard</li>
+        <mat-icon>dashboard</mat-icon>Dashboard
+      </li>
       <li routerLink="/user" routerLinkActive="router-link-active">
-        <mat-icon>person</mat-icon>User</li>
+        <mat-icon>perm_contact_calendar</mat-icon>User
+      </li>
+      <li routerLink="/task" routerLinkActive="router-link-active">
+        <mat-icon>task</mat-icon>Task
+      </li>
+      <li routerLink="/opportunities" routerLinkActive="router-link-active">
+        <mat-icon>shopping_cart</mat-icon>Opportunities
+      </li>
+
     </ul>
   </mat-drawer>
 
@@ -17,7 +29,6 @@
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <mat-icon class="menu-icon" (click)="drawer.toggle()">sort</mat-icon>
-        <span>Simple CRM</span>
       </mat-toolbar-row>
     </mat-toolbar>
     <div class="router-container">

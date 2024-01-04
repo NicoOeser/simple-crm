@@ -19,7 +19,6 @@ import { Firestore, collection, updateDoc, doc } from '@angular/fire/firestore';
 export class EditUserComponent {
   firestore: Firestore = inject(Firestore);
   user!: User;
-  birthDate!: Date;
   userId!: string;
   isLoading: boolean = false;
 
@@ -35,8 +34,11 @@ export class EditUserComponent {
     this.isLoading = false;
   }
 
+
+
   closeDialog() {
     this.dialogRef.close();
   }
+  
 
 }

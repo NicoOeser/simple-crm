@@ -1,23 +1,29 @@
 <section>
 
   <mat-card>
-  
+
     <table class="user-table">
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Name</th>
         <th>E-Mail</th>
-        <th>City</th>
+        <th>Phone</th>
+        <th>Company</th>
+        <th></th>
       </tr>
       <tr *ngFor="let user of allUsers" (click)="navigateToUser(user.id)">
-        <td>{{ user.firstName }}</td>
-        <td>{{ user.lastName }}</td>
+        <td>{{ user.firstName }} {{ user.lastName }}</td>
         <td>{{ user.email }}</td>
-        <td>{{ user.city }}</td>
-      </tr> 
+        <td>{{ user.phoneNo }}</td>
+        <td>{{ user.company }}</td>
+        <td>
+          <button class="delete-btn" mat-button (click)="openDeleteDialog(user.id)"><mat-icon>delete</mat-icon></button>
+
+        </td>
+      </tr>
     </table>
-  
+
   </mat-card>
+
 
   <button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" matTooltip="Add new User"
     [matTooltipPosition]="'above'">

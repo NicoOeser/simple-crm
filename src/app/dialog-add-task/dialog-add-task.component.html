@@ -1,0 +1,48 @@
+<section>
+
+    @if (isLoading) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>}
+  
+    <div class="dialog-header">
+      <h1 mat-dialog-title>Add Task</h1>
+    </div>
+    <div mat-dialog-content>
+      <div>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Title</mat-label>
+          <input [disabled]="isLoading" matInput [(ngModel)]="task.title">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field color="accent" class="full-width" appearance="outline">
+          <mat-label>MM/DD/YYYY</mat-label>
+          <input [disabled]="isLoading" matInput [matDatepicker]="picker1" [(ngModel)]="task.dueDate">
+          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="full-width"  appearance="outline">
+          <mat-label>Opportunity</mat-label>
+          <input [disabled]="isLoading" matInput [(ngModel)]="task.opportunitie">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Task Status</mat-label>
+          <input [disabled]="isLoading" matInput [(ngModel)]="task.status">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Task Type</mat-label>
+          <input [disabled]="isLoading" matInput [(ngModel)]="task.type">
+        </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <button [disabled]="isLoading" mat-button (click)="closeDialog()">Cancel</button>
+      <button [disabled]="isLoading" mat-button (click)="saveTask()" cdkFocusInitial>Save</button>
+    </div>
+  
+  </section>

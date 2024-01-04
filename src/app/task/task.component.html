@@ -1,0 +1,35 @@
+<section>
+
+    <mat-card>
+  
+      <table class="task-table">
+        <tr>
+          <th>Title</th>
+          <th>Due Date</th>
+          <th>Opportunity</th>
+          <th>Task Status</th>
+          <th>Task Type</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let task of allTasks">
+          <td>{{ task.title }}</td>
+          <td>{{ task.dueDate }}</td>
+          <td>{{ task.opportunitie }}</td>
+          <td>{{ task.status }}</td>
+          <td>{{ task.type }}</td>
+          <td>
+            <button class="delete-btn" mat-button (click)="openDeleteDialog(task.id)"><mat-icon>delete</mat-icon></button>
+  
+          </td>
+        </tr>
+      </table>
+  
+    </mat-card>
+  
+  
+    <button (click)="openDialog()" class="add-task-btn" mat-fab color="primary" matTooltip="Add new Task"
+      [matTooltipPosition]="'above'">
+      <mat-icon>plus_one</mat-icon>
+    </button>
+  
+  </section>

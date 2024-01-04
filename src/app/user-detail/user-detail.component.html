@@ -3,13 +3,10 @@
     <mat-card class="user-detail-header">
 
         <div class="img-container">
-            <button mat-icon-button [matMenuTriggerFor]="menu" class="user-detail-edit">
-                <mat-icon fontIcon="more_vert"></mat-icon>
+            <button mat-icon-button (click)="editUserDialog()" class="user-detail-edit" matTooltip="Edit User"
+            [matTooltipPosition]="'below'" >
+                <mat-icon fontIcon="edit"></mat-icon>
             </button>
-
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="editUserDialog()">Edit User</button>
-            </mat-menu>
 
             <img class="user-img" src="./assets/img/profil.png" alt="">
             <div class="user-first-info-container">
@@ -26,16 +23,41 @@
     </mat-card>
 
     <mat-card class="mt-32">
-        <mat-card-header>
-            <mat-card-title>
-                <h1>Address</h1>
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            {{ user.street }} {{user.houseNo}}
-            <br>
-            {{ user.zipCode }} {{ user.city }}
+        <mat-card-content style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <mat-card-header>
+                    <mat-card-title>
+                        <h1>Address</h1>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    {{ user.street }} {{user.houseNo}}
+                    <br>
+                    {{ user.zipCode }} {{ user.city }}
+                </mat-card-content>
+            </div>
+            <div>
+                <mat-card-header>
+                    <mat-card-title>
+                        <h1>Company</h1>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    {{ user.company }} 
+                </mat-card-content>
+            </div>
+            <div>
+                <mat-card-header>
+                    <mat-card-title>
+                        <h1>Phone</h1>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    {{ user.phoneNo }} 
+                </mat-card-content>
+            </div>
         </mat-card-content>
     </mat-card>
+    
 
 </section>

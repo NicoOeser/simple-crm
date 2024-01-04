@@ -3,7 +3,9 @@
   @if (isLoading) {
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>}
 
-  <h1 mat-dialog-title>Add User</h1>
+  <div class="dialog-header">
+    <h1 mat-dialog-title>Add User</h1>
+  </div>
   <div mat-dialog-content>
     <div>
       <mat-form-field class="mr-16" appearance="outline">
@@ -16,11 +18,15 @@
       </mat-form-field>
     </div>
     <div>
-      <mat-form-field class="full-width" appearance="outline">
-        <mat-label>Birth Date</mat-label>
-        <input [disabled]="isLoading" matInput [matDatepicker]="picker" [(ngModel)]="birthDate">
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+      <mat-form-field class="full-width"  appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input [disabled]="isLoading" matInput [(ngModel)]="user.phoneNo">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width"  appearance="outline">
+        <mat-label>Company</mat-label>
+        <input [disabled]="isLoading" matInput [(ngModel)]="user.company">
       </mat-form-field>
     </div>
     <div>
