@@ -1,7 +1,7 @@
 export class Task {
     title: string;
-    dueDate: number;
-    opportunitie: string;
+    date: Date;
+    customer: string;
     status: string;
     type: string;
 
@@ -9,8 +9,8 @@ export class Task {
 
     constructor(obj?: any) {
         this.title = obj ? obj.title : '';
-        this.dueDate = obj ? obj.dueDate : '';
-        this.opportunitie = obj ? obj.opportunitie : '';
+        this.date = obj ? obj.date : '';
+        this.customer = obj ? obj.customer : '';
         this.status = obj ? obj.status : '';
         this.type = obj ? obj.type : '';
     }
@@ -18,8 +18,8 @@ export class Task {
     public toJson() {
         return {
             title: this.title,
-            dueDate: this.dueDate,
-            opportunitie: this.opportunitie,
+            date: this.date,
+            customer: this.customer,
             status: this.status,
             type: this.type,
         }

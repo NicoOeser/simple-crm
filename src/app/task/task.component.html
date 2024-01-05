@@ -6,17 +6,17 @@
         <tr>
           <th>Title</th>
           <th>Due Date</th>
-          <th>Opportunity</th>
+          <th>Customer</th>
           <th>Task Status</th>
           <th>Task Type</th>
           <th></th>
         </tr>
         <tr *ngFor="let task of allTasks">
           <td>{{ task.title }}</td>
-          <td>{{ task.dueDate }}</td>
-          <td>{{ task.opportunitie }}</td>
-          <td>{{ task.status }}</td>
-          <td>{{ task.type }}</td>
+          <td>{{ task.date.toDate() | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ task.customer }}</td>
+          <td>{{ getStatusName(task.status) }}</td>
+          <td>{{ getTypeName(task.type) }}</td>
           <td>
             <button class="delete-btn" mat-button (click)="openDeleteDialog(task.id)"><mat-icon>delete</mat-icon></button>
   

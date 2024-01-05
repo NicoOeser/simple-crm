@@ -14,29 +14,40 @@
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field color="accent" class="full-width" appearance="outline">
-          <mat-label>MM/DD/YYYY</mat-label>
-          <input [disabled]="isLoading" matInput [matDatepicker]="picker1" [(ngModel)]="task.dueDate">
+        <mat-form-field  class="full-width" appearance="outline">
+          <mat-label>Due Date</mat-label>
+          <input [disabled]="isLoading" matInput [matDatepicker]="picker1" [(ngModel)]="date">
           <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="full-width"  appearance="outline">
-          <mat-label>Opportunity</mat-label>
-          <input [disabled]="isLoading" matInput [(ngModel)]="task.opportunitie">
+          <mat-datepicker #picker1></mat-datepicker>          
         </mat-form-field>
       </div>
       <div>
         <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Customer</mat-label>
+          <input [disabled]="isLoading" matInput [(ngModel)]="task.customer">
+        </mat-form-field>
+      </div>
+      
+      <div>
+        <mat-form-field class="full-width" appearance="outline">
           <mat-label>Task Status</mat-label>
-          <input [disabled]="isLoading" matInput [(ngModel)]="task.status">
+          <mat-select [disabled]="isLoading" [(ngModel)]="task.status" matInput>
+            <mat-option value="option1">Not Started</mat-option>
+            <mat-option value="option2">In Progress</mat-option>
+            <mat-option value="option3">Complete</mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
       <div>
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Task Type</mat-label>
-          <input [disabled]="isLoading" matInput [(ngModel)]="task.type">
+          <mat-select [disabled]="isLoading" [(ngModel)]="task.type" matInput>
+            <mat-option value="option1">Meeting</mat-option>
+            <mat-option value="option2">Online Meeting</mat-option>
+            <mat-option value="option3">Call</mat-option>
+            <mat-option value="option4">Email</mat-option>
+
+          </mat-select>
         </mat-form-field>
       </div>
     </div>

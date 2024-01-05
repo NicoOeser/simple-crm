@@ -63,6 +63,38 @@ export class TaskComponent implements OnInit{
   openDialog() {
     this.dialog.open(DialogAddTaskComponent);
   }
+
+
+  getStatusName(status: string): string {
+    switch (status) {
+      case 'option1':
+        return 'Not Started';
+      case 'option2':
+        return 'In Progress';
+      case 'option3':
+        return 'Complete';
+      // ... weitere Optionen ...
+      default:
+        return 'Unknown';
+    }
+  }
+
+  getTypeName(type: string): string {
+    switch (type) {
+      case 'option1':
+        return 'Meeting';
+      case 'option2':
+        return 'Online Meeting';
+      case 'option3':
+        return 'Call';
+      case 'option4':
+        return 'Email';
+      // ... weitere Optionen ...
+      default:
+        return 'Unknown';
+    }
+  }
 }
+
 
 

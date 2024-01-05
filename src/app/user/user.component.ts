@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDialogModule, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogModule, MatDialog,} from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -29,10 +29,12 @@ export class UserComponent implements OnInit {
   allUsers = Array();
 
 
+
   constructor(public dialog: MatDialog, private firestore: Firestore, private router: Router) { }
 
   ngOnInit() {
     this.getUsers();
+
   }
 
   async getUsers() {
@@ -63,11 +65,13 @@ export class UserComponent implements OnInit {
 
   openDeleteDialog(userId: string): void {
     console.log('Opening delete dialog with userId:', userId);
-    this.dialog.open(DeleteUserComponent, {
-      data: { userId: userId }
+    const dialogRef = this.dialog.open(DeleteUserComponent, {
+      data: { userId: userId },
+      position: { top: '570px' },
     });
   }
 
+  
   openDialog() {
     this.dialog.open(DialogAddUserComponent);
   }
