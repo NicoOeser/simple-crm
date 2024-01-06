@@ -4,43 +4,44 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { User } from '../../models/user.class';
+import { Customer } from '../../models/customer.class';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Firestore, deleteDoc, doc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-delete-user',
+  selector: 'app-delete-customer',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatProgressBarModule, MatDialogModule,],
-  templateUrl: './delete-user.component.html',
-  styleUrls: ['./delete-user.component.scss']
+  templateUrl: './delete-customer.component.html',
+  styleUrl: './delete-customer.component.scss'
 })
-export class DeleteUserComponent {
-  userId!: string;
+
+
+export class DeleteCustomerComponent {
+  customerId!: string;
 
 
   constructor(
-    public dialogRef: MatDialogRef<DeleteUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { userId: string },
+    public dialogRef: MatDialogRef<DeleteCustomerComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { customerId: string },
     private firestore: Firestore,
     private router: Router,
   ) {
-    this.userId = data.userId;
+    this.customerId = data.customerId;
   }
 
-  async deleteUser() {
-    if (!this.userId) {
-      console.error('User ID is not defined.');
+  async deleteCustomer() {
+    if (!this.customerId) {
       return;
     }
 
     try {
-      const userRef = doc(this.firestore, 'users', this.userId);
-      await deleteDoc(userRef);
+      const customerRef = doc(this.firestore, 'customers', this.customerId);
+      await deleteDoc(customerRef);
       console.log('User deleted successfully');
       this.closeDialog();
-      this.navigateToUserList();
+      this.navigateToCustomerList();
     } catch (error) {
       console.error('Error deleting user:', error);
     }
@@ -50,8 +51,8 @@ export class DeleteUserComponent {
     this.dialogRef.close();
   }
 
-  navigateToUserList() {
-    this.router.navigate(['/user']);
+  navigateToCustomerList() {
+    this.router.navigate(['/customer']);
   }
 }
 

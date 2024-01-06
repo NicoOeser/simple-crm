@@ -23,7 +23,7 @@ export class AppComponent {
   items$: Observable<any[]>;
 
   constructor() {
-    const usersCollection = collection(this.firestore, 'users')
-    this.items$ = collectionData(usersCollection);
+    const customersCollection = collection(this.firestore, 'customers')
+    this.items$ = collectionData(customersCollection);
   }
 }

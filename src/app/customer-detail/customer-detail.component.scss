@@ -3,14 +3,14 @@ mat-card {
     padding-left: 0;
 }
 
-.user-detail-header {
+.customer-detail-header {
     min-height: 250px;
     background-color: #C2185B;
     color: white;
 
 }
 
-.user-detail-edit{
+.customer-detail-edit{
     position: absolute;
     right: 0;
     top: 0;
@@ -26,14 +26,14 @@ mat-card {
     padding-bottom: 8px;
     position: relative;
 
-    .user-img {
+    .customer-img {
         height: 120px;
         width: 120px;
         object-fit: contain;
         border-radius: 50%;
     }
 
-    .user-first-info-container {
+    .customer-first-info-container {
         display: flex;
         align-items: flex-start;
         flex-direction: column;

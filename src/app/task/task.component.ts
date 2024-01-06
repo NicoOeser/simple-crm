@@ -21,7 +21,7 @@ import { DialogAddTaskComponent } from '../dialog-add-task/dialog-add-task.compo
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss'
 })
-export class TaskComponent implements OnInit{
+export class TaskComponent implements OnInit {
   task = new Task();
   allTasks = Array();
 
@@ -39,18 +39,8 @@ export class TaskComponent implements OnInit{
       this.allTasks = snapshot.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
-
-      console.log(this.allTasks);
-
-      snapshot.docChanges().forEach((change) => {
-        if (change.type === "modified") {
-          console.log("Modified user: ", change.doc.data());
-        }
-        if (change.type === "removed") {
-          console.log("Removed user: ", change.doc.data());
-        }
-      });
     });
+
   }
 
   openDeleteDialog(taskId: string): void {
@@ -73,7 +63,6 @@ export class TaskComponent implements OnInit{
         return 'In Progress';
       case 'option3':
         return 'Complete';
-      // ... weitere Optionen ...
       default:
         return 'Unknown';
     }
@@ -89,7 +78,6 @@ export class TaskComponent implements OnInit{
         return 'Call';
       case 'option4':
         return 'Email';
-      // ... weitere Optionen ...
       default:
         return 'Unknown';
     }

@@ -3,35 +3,31 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
-import { User } from "../../models/user.class";
+import { Customer } from "../../models/customer.class";
 import { FormsModule } from '@angular/forms';
 import { Firestore, collection, collectionData, addDoc, doc, getDoc, onSnapshot } from '@angular/fire/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-
 @Component({
-  selector: 'app-dialog-add-user',
+  selector: 'app-dialog-add-customer',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, MatDialogModule, MatButtonModule, FormsModule, MatProgressBarModule, ],
-  templateUrl: './dialog-add-user.component.html',
-  styleUrl: './dialog-add-user.component.scss'
+  templateUrl: './dialog-add-customer.component.html',
+  styleUrl: './dialog-add-customer.component.scss'
 })
-
-export class DialogAddUserComponent {
-  user = new User;
+export class DialogAddCustomerComponent {
+  customer = new Customer;
   firestore: Firestore = inject(Firestore);
-  userCollection;
+  customerCollection;
   isLoading: boolean = false;
 
-  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) {
-    this.userCollection = collection(this.firestore, 'users');
+  constructor(public dialogRef: MatDialogRef<DialogAddCustomerComponent>) {
+    this.customerCollection = collection(this.firestore, 'customers');
   }
 
-  async saveUser() {
+  async saveCustomer() {
     this.isLoading = true;
-    const docRef = await addDoc(this.userCollection, this.user.toJson());
+    const docRef = await addDoc(this.customerCollection, this.customer.toJson());
     this.isLoading = false;
     this.closeDialog();
   }

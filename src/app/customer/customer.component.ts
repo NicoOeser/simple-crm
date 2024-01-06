@@ -5,74 +5,61 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule, MatDialog,} from '@angular/material/dialog';
-import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
+import { DialogAddCustomerComponent } from '../dialog-add-customer/dialog-add-customer.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { User } from "../../models/user.class";
+import { Customer} from "../../models/customer.class";
 import { MatCardModule } from '@angular/material/card';
 import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query } from '@angular/fire/firestore';
-import { DeleteUserComponent } from '../delete-user/delete-user.component';
-
+import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
 
 @Component({
-  selector: 'app-user',
+  selector: 'app-customer',
   standalone: true,
   imports: [CommonModule, MatIconModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule, MatProgressBarModule, MatCardModule,],
-  templateUrl: './user.component.html',
-  styleUrl: './user.component.scss'
+  templateUrl: './customer.component.html',
+  styleUrl: './customer.component.scss'
 })
-
-
-export class UserComponent implements OnInit {
-  user = new User();
-  allUsers = Array();
-
-
+export class CustomerComponent implements OnInit {
+  customer = new Customer();
+  allCustomers = Array();
 
   constructor(public dialog: MatDialog, private firestore: Firestore, private router: Router) { }
 
   ngOnInit() {
-    this.getUsers();
+    this.getCustomers();
 
   }
 
-  async getUsers() {
-    const userCollection = collection(this.firestore, 'users');
-    const q = query(userCollection);
+  async getCustomers() {
+    const customerCollection = collection(this.firestore, 'customers');
+    const q = query(customerCollection);
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      this.allUsers = snapshot.docs.map((doc) => {
+      this.allCustomers = snapshot.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
 
-      console.log(this.allUsers);
-
-      snapshot.docChanges().forEach((change) => {
-        if (change.type === "modified") {
-          console.log("Modified user: ", change.doc.data());
-        }
-        if (change.type === "removed") {
-          console.log("Removed user: ", change.doc.data());
-        }
+      console.log(this.allCustomers);
       });
-    });
   }
 
-  navigateToUser(userId: string) {
-    this.router.navigate(['/user', userId]);
+  navigateToCustomer(customerId: string) {
+    this.router.navigate(['/customer', customerId]);
   }
 
 
-  openDeleteDialog(userId: string): void {
-    console.log('Opening delete dialog with userId:', userId);
-    const dialogRef = this.dialog.open(DeleteUserComponent, {
-      data: { userId: userId },
+  openDeleteDialog(customerId: string): void {
+    console.log('Opening delete dialog with customerId:', customerId);
+    const dialogRef = this.dialog.open(DeleteCustomerComponent, {
+      data: { customerId: customerId },
       position: { top: '570px' },
     });
   }
 
   
   openDialog() {
-    this.dialog.open(DialogAddUserComponent);
+    this.dialog.open(DialogAddCustomerComponent);
   }
 }
+

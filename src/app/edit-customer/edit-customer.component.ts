@@ -4,32 +4,33 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { User } from '../../models/user.class';
+import { Customer } from '../../models/customer.class';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Firestore, collection, updateDoc, doc } from '@angular/fire/firestore';
 
 @Component({
-  selector: 'app-edit-user',
+  selector: 'app-edit-customer',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatProgressBarModule, MatDialogModule ],
-  templateUrl: './edit-user.component.html',
-  styleUrl: './edit-user.component.scss'
+  templateUrl: './edit-customer.component.html',
+  styleUrl: './edit-customer.component.scss'
 })
 
-export class EditUserComponent {
+
+export class EditCustomerComponent {
   firestore: Firestore = inject(Firestore);
-  user!: User;
-  userId!: string;
+  customer!: Customer;
+  customerId!: string;
   isLoading: boolean = false;
 
-  constructor(public dialogRef: MatDialogRef<EditUserComponent>) {
-    const userCollection = collection(this.firestore, 'users');
+  constructor(public dialogRef: MatDialogRef<EditCustomerComponent>) {
+    const customerCollection = collection(this.firestore, 'customers');
   }
 
-  async saveUser() {
+  async saveCustomer() {
     this.isLoading = true;
-    const userRef = doc(this.firestore, 'users', this.userId);
-    await updateDoc(userRef, this.user.toJson());
+    const customerRef = doc(this.firestore, 'customers', this.customerId);
+    await updateDoc(customerRef, this.customer.toJson());
     this.closeDialog();
     this.isLoading = false;
   }
