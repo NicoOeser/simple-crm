@@ -14,7 +14,7 @@
         <tr *ngFor="let task of allTasks">
           <td>{{ task.title }}</td>
           <td>{{ task.date.toDate() | date: 'dd/MM/yyyy' }}</td>
-          <td>{{ task.customer }}</td>
+          <td>{{ getCustomerName(task.customer) }}</td>
           <td>{{ getStatusName(task.status) }}</td>
           <td>{{ getTypeName(task.type) }}</td>
           <td>

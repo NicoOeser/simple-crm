@@ -1,4 +1,4 @@
-.add-task-btn {
+.add-product-btn {
     position: absolute;
     right: 56px;
     bottom: 56px;
@@ -9,14 +9,13 @@ mat-card {
     padding-left: 0;
 }
 
-.task-table {
+.product-table {
     width: 100%;
     border-collapse: collapse;
 
     tr {
         height: 40px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-        
 
         &:first-child {
             cursor: unset;

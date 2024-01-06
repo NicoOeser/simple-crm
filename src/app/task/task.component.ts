@@ -24,12 +24,25 @@ import { DialogAddTaskComponent } from '../dialog-add-task/dialog-add-task.compo
 export class TaskComponent implements OnInit {
   task = new Task();
   allTasks = Array();
+  customers: any[] = [];
 
 
   constructor(public dialog: MatDialog, private firestore: Firestore, private router: Router) { }
 
   ngOnInit() {
     this.getTasks();
+    this.getCustomers();
+    
+  }
+
+  async getCustomers() {
+    const customerCollection = collection(this.firestore, 'customers');
+    const q = query(customerCollection);
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      this.customers = snapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+      });
+    });
   }
 
   async getTasks() {
@@ -54,6 +67,10 @@ export class TaskComponent implements OnInit {
     this.dialog.open(DialogAddTaskComponent);
   }
 
+  getCustomerName(customerId: string): string {
+    const customer = this.customers.find(c => c.id === customerId);
+    return customer ? `${customer.firstName} ${customer.lastName}` : 'Unknown Customer';
+  }
 
   getStatusName(status: string): string {
     switch (status) {

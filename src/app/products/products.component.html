@@ -1,0 +1,29 @@
+<section>
+
+    <mat-card>
+  
+      <table class="product-table">
+        <tr>
+          <th>Product</th>
+          <th>Price in €</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let product of allProducts">
+          <td>{{ product.productName }}</td>
+          <td>{{ product.productPrice }}</td>
+          <td>
+            <button class="delete-btn" mat-button (click)="openDeleteDialog(product.id)"><mat-icon>delete</mat-icon></button>
+          </td>
+        </tr>
+        
+      </table>
+  
+    </mat-card>
+  
+  
+    <button (click)="openDialog()" class="add-product-btn" mat-fab color="primary" matTooltip="Add new Product"
+      [matTooltipPosition]="'above'">
+      <mat-icon>plus_one</mat-icon>
+    </button>
+  
+  </section>
