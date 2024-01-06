@@ -4,7 +4,12 @@
   
       <table class="product-table">
         <tr>
-          <th>Product</th>
+          <th>
+            Product
+            <button mat-button (click)="sortByProduct()">
+              <mat-icon>filter_list</mat-icon>
+            </button>
+          </th>
           <th>Price in €</th>
           <th></th>
         </tr>

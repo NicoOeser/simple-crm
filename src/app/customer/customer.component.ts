@@ -11,7 +11,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Customer} from "../../models/customer.class";
 import { MatCardModule } from '@angular/material/card';
-import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot, query } from '@angular/fire/firestore';
 import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
 
 @Component({
@@ -24,6 +24,7 @@ import { DeleteCustomerComponent } from '../delete-customer/delete-customer.comp
 export class CustomerComponent implements OnInit {
   customer = new Customer();
   allCustomers = Array();
+  sortIcon: string = 'filter_list';
 
   constructor(public dialog: MatDialog, private firestore: Firestore, private router: Router) { }
 
@@ -35,13 +36,13 @@ export class CustomerComponent implements OnInit {
   async getCustomers() {
     const customerCollection = collection(this.firestore, 'customers');
     const q = query(customerCollection);
+    const orderByField = 'firstName'; // Standard-Sortierfeld (Name)
     const unsubscribe = onSnapshot(q, (snapshot) => {
       this.allCustomers = snapshot.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
-
-      console.log(this.allCustomers);
-      });
+      this.sortByName(); // Standardmäßig nach Name sortieren
+    });
   }
 
   navigateToCustomer(customerId: string) {
@@ -57,6 +58,26 @@ export class CustomerComponent implements OnInit {
     });
   }
 
+  sortByName() {
+    const orderByField = 'firstName';
+    const sortedCustomers = [...this.allCustomers];
+    sortedCustomers.sort((a, b) => {
+      if (a[orderByField] < b[orderByField]) {
+        return -1;
+      } else if (a[orderByField] > b[orderByField]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    if (this.sortIcon === 'filter_list') {
+      this.sortIcon = 'arrow_downward';
+      this.allCustomers = sortedCustomers;
+    } else {
+      this.sortIcon = 'filter_list';
+      this.allCustomers = sortedCustomers.reverse();
+    }
+  }
   
   openDialog() {
     this.dialog.open(DialogAddCustomerComponent);

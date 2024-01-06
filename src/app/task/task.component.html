@@ -4,7 +4,11 @@
   
       <table class="task-table">
         <tr>
-          <th>Title</th>
+          <th>Title
+            <button mat-button (click)="sortByTitle()">
+              <mat-icon>filter_list</mat-icon>
+            </button>
+          </th>
           <th>Due Date</th>
           <th>Customer</th>
           <th>Task Status</th>

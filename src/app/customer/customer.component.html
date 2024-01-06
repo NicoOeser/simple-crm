@@ -1,28 +1,33 @@
 <section>
 
-    <mat-card>
+  <mat-card>
+    <table class="customer-table">
+      <tr>
+        <th>
+          Name
+          <button mat-button (click)="sortByName()">
+            <mat-icon>filter_list</mat-icon>
+          </button>
+        </th>
+        <th>E-Mail</th>
+        <th>Phone</th>
+        <th>Company</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let customer of allCustomers" (click)="navigateToCustomer(customer.id)">
+        <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.phoneNo }}</td>
+        <td>{{ customer.company }}</td>
+        <td>
+          <button class="delete-btn" mat-button (click)="openDeleteDialog(customer.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </mat-card>
   
-      <table class="customer-table">
-        <tr>
-          <th>Name</th>
-          <th>E-Mail</th>
-          <th>Phone</th>
-          <th>Company</th>
-          <th></th>
-        </tr>
-        <tr *ngFor="let customer of allCustomers" (click)="navigateToCustomer(customer.id)">
-          <td>{{ customer.firstName }} {{ customer.lastName }}</td>
-          <td>{{ customer.email }}</td>
-          <td>{{ customer.phoneNo }}</td>
-          <td>{{ customer.company }}</td>
-          <td>
-            <button class="delete-btn" mat-button (click)="openDeleteDialog(customer.id)"><mat-icon>delete</mat-icon></button>
-  
-          </td>
-        </tr>
-      </table>
-  
-    </mat-card>
   
   
     <button (click)="openDialog()" class="add-customer-btn" mat-fab color="primary" matTooltip="Add new Customer"

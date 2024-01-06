@@ -10,7 +10,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Task } from "../../models/task.class";
 import { MatCardModule } from '@angular/material/card';
-import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query, orderBy  } from '@angular/fire/firestore';
 import { DeleteTaskComponent } from '../delete-task/delete-task.component';
 import { DialogAddTaskComponent } from '../dialog-add-task/dialog-add-task.component';
 
@@ -19,20 +19,19 @@ import { DialogAddTaskComponent } from '../dialog-add-task/dialog-add-task.compo
   standalone: true,
   imports: [CommonModule, MatIconModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule, MatProgressBarModule, MatCardModule,],
   templateUrl: './task.component.html',
-  styleUrl: './task.component.scss'
+  styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
   task = new Task();
   allTasks = Array();
   customers: any[] = [];
-
+  sortIcon: string = 'filter_list';
 
   constructor(public dialog: MatDialog, private firestore: Firestore, private router: Router) { }
 
   ngOnInit() {
     this.getTasks();
     this.getCustomers();
-    
   }
 
   async getCustomers() {
@@ -52,8 +51,31 @@ export class TaskComponent implements OnInit {
       this.allTasks = snapshot.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
+      this.sortByTitle(); // Standardmäßig nach Titel sortieren
     });
+  }
 
+  sortByTitle() {
+    const orderByField = 'title';
+    const sortedTasks = [...this.allTasks];
+    sortedTasks.sort((a, b) => {
+      const titleA = a[orderByField].toLowerCase();
+      const titleB = b[orderByField].toLowerCase();
+      if (titleA < titleB) {
+        return -1;
+      } else if (titleA > titleB) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    if (this.sortIcon === 'filter_list') {
+      this.sortIcon = 'arrow_downward';
+      this.allTasks = sortedTasks;
+    } else {
+      this.sortIcon = 'filter_list';
+      this.allTasks = sortedTasks.reverse();
+    }
   }
 
   openDeleteDialog(taskId: string): void {

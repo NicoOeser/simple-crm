@@ -25,6 +25,8 @@ export class ProductsComponent implements OnInit {
   product = new Product();
   allProducts = Array();
   productId: any;
+  sortIcon: string = 'filter_list';
+  
 
   constructor(public dialog: MatDialog, private firestore: Firestore, private router: Router) { }
 
@@ -36,13 +38,34 @@ export class ProductsComponent implements OnInit {
   async getProducts() {
     const productCollection = collection(this.firestore, 'products');
     const q = query(productCollection);
+    const orderByField = 'productName'; // Standard-Sortierfeld (Product Name)
     const unsubscribe = onSnapshot(q, (snapshot) => {
       this.allProducts = snapshot.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
-
-      console.log(this.allProducts);
+      this.sortByProduct(); // Standardmäßig nach Product Name sortieren
     });
+  }
+
+  sortByProduct() {
+    const orderByField = 'productName';
+    const sortedProducts = [...this.allProducts];
+    sortedProducts.sort((a, b) => {
+      if (a[orderByField] < b[orderByField]) {
+        return -1;
+      } else if (a[orderByField] > b[orderByField]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    if (this.sortIcon === 'filter_list') {
+      this.sortIcon = 'arrow_downward';
+      this.allProducts = sortedProducts;
+    } else {
+      this.sortIcon = 'filter_list';
+      this.allProducts = sortedProducts.reverse();
+    }
   }
 
   navigateToProduct(productId: string) {
