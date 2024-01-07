@@ -1,0 +1,14 @@
+section{
+    position: relative;
+  }
+
+  .dialog-header{
+    border-bottom: 1px solid rgba(63, 81, 181, 0.08);
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #C2185B;
+  }

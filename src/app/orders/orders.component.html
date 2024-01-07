@@ -1,1 +1,41 @@
-<p>orders works!</p>
+<section>
+
+    <mat-card>
+
+        <table class="order-table">
+            <tr>
+                <th>Product
+                    <button mat-button (click)="sortByProduct()">
+                        <mat-icon>filter_list</mat-icon>
+                    </button>
+                </th>
+                <th>Company</th>
+                <th>Pieces</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let order of allOrders">
+                <td>{{ getProductName(order.product) }}</td>
+                <td>{{ getCompanyName(order.company) }}</td>
+                <td>{{ order.pieces}}</td>
+                <td>{{ getProductPrice(order.product) }}</td>
+                <td>{{ calculateTotal(order.pieces, order.product) }}</td>
+                <td>{{ getStatusName(order.status) }}</td>
+                <td>
+                    <button class="delete-btn" mat-button
+                        (click)="openDeleteDialog(order.id)"><mat-icon>delete</mat-icon></button>
+                </td>
+            </tr>
+        </table>
+
+    </mat-card>
+
+
+    <button (click)="openDialog()" class="add-order-btn" mat-fab color="primary" matTooltip="Add new Order"
+        [matTooltipPosition]="'above'">
+        <mat-icon>plus_one</mat-icon>
+    </button>
+
+</section>
