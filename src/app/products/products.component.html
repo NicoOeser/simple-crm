@@ -1,6 +1,8 @@
 <section>
-
-    <mat-card>
+  <mat-card class="headline">
+    Products
+</mat-card>
+    <mat-card class="mt-52">
   
       <table class="product-table">
         <tr>
@@ -10,10 +12,10 @@
               <mat-icon>filter_list</mat-icon>
             </button>
           </th>
-          <th>Price in €</th>
+          <th>Price</th>
           <th></th>
         </tr>
-        <tr *ngFor="let product of allProducts">
+        <tr *ngFor="let product of allProducts" (click)="openEditDialog(product.id)">
           <td>{{ product.productName }}</td>
           <td>{{ product.productPrice }}</td>
           <td>

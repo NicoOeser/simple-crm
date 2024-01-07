@@ -45,7 +45,10 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   editCustomerDialog(): void {
-    const dialogRef = this.dialog.open(EditCustomerComponent, { panelClass: 'custom-container' });
+    const dialogRef = this.dialog.open(EditCustomerComponent, {
+      width: '600px',
+      panelClass: 'custom-container',
+    });
     dialogRef.componentInstance.customer = new Customer(this.customer.toJson());
     dialogRef.componentInstance.customerId = this.customerId;
   }

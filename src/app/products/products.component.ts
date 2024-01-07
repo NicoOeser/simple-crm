@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query } from '@angular/fire/firestore';
 import { DeleteProductComponent } from '../delete-product/delete-product.component';
 import { DialogAddProductComponent } from '../dialog-add-product/dialog-add-product.component';
+import { EditProductComponent } from '../edit-product/edit-product.component';
 
 @Component({
   selector: 'app-products',
@@ -32,20 +33,20 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
-
   }
 
   async getProducts() {
     const productCollection = collection(this.firestore, 'products');
     const q = query(productCollection);
-    const orderByField = 'productName'; // Standard-Sortierfeld (Product Name)
+    const orderByField = 'productName';
     const unsubscribe = onSnapshot(q, (snapshot) => {
       this.allProducts = snapshot.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
-      this.sortByProduct(); // Standardmäßig nach Product Name sortieren
+      this.sortByProduct();
     });
   }
+
 
   sortByProduct() {
     const orderByField = 'productName';
@@ -77,12 +78,28 @@ export class ProductsComponent implements OnInit {
     console.log('Opening delete dialog with customerId:', productId);
     const dialogRef = this.dialog.open(DeleteProductComponent, {
       data: { productId: productId },
-      position: { top: '570px' },
     });
   }
 
-  openDialog() {
-    this.dialog.open(DialogAddProductComponent);
+  openEditDialog(productId: string): void  {
+    const dialogRef = this.dialog.open(EditProductComponent, {
+      width: '400px', 
+      data: { productId: productId} 
+    });
+  
+    dialogRef.componentInstance.product = this.allProducts.find(task => task.id === productId);
+    dialogRef.componentInstance.productId = productId;
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The edit dialog was closed');
+    });
+  }
+
+
+  openDialog(): void {
+    this.dialog.open(DialogAddProductComponent, {
+      width: '600px',
+    });
   }
 }
 

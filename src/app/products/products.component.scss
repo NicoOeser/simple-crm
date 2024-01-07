@@ -9,6 +9,15 @@ mat-card {
     padding-left: 0;
 }
 
+.headline {
+    padding-left: 16px;
+    display: flex;
+    justify-content: center;
+    font-size: 48px;
+    margin-top: 30px;
+    height: 80px;
+}
+
 .product-table {
     width: 100%;
     border-collapse: collapse;
@@ -16,7 +25,8 @@ mat-card {
     tr {
         height: 40px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-
+        cursor: pointer;
+        
         &:first-child {
             cursor: unset;
 

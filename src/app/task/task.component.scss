@@ -9,6 +9,15 @@ mat-card {
     padding-left: 0;
 }
 
+.headline {
+    padding-left: 16px;
+    display: flex;
+    justify-content: center;
+    font-size: 48px;
+    margin-top: 30px;
+    height: 80px;
+}
+
 .task-table {
     width: 100%;
     border-collapse: collapse;
@@ -16,7 +25,7 @@ mat-card {
     tr {
         height: 40px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-        
+        cursor: pointer; 
 
         &:first-child {
             cursor: unset;
@@ -44,6 +53,7 @@ mat-card {
             &:first-child {
                 padding-left: 16px;
             }
+
         }
 
         td {
@@ -55,11 +65,14 @@ mat-card {
             &:first-child {
                 padding-left: 16px;
             }
+
+
         }
     }
 
 .delete-btn{
     z-index: 1;
+    
 }
 
     .delete-btn:hover {

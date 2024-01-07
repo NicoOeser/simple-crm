@@ -1,6 +1,9 @@
 <section>
 
-    <mat-card>
+  <mat-card class="headline">
+   Tasks
+</mat-card>
+    <mat-card class="mt-52">
   
       <table class="task-table">
         <tr>
@@ -14,16 +17,19 @@
           <th>Task Status</th>
           <th>Task Type</th>
           <th></th>
+
         </tr>
-        <tr *ngFor="let task of allTasks">
+        <tr *ngFor="let task of allTasks" (click)="openEditDialog(task.id)">
           <td>{{ task.title }}</td>
           <td>{{ task.date.toDate() | date: 'dd/MM/yyyy' }}</td>
           <td>{{ getCustomerName(task.customer) }}</td>
           <td>{{ getStatusName(task.status) }}</td>
           <td>{{ getTypeName(task.type) }}</td>
           <td>
-            <button class="delete-btn" mat-button (click)="openDeleteDialog(task.id)"><mat-icon>delete</mat-icon></button>
-  
+            <button class="delete-btn" mat-button (click)="openDeleteDialog($event, task.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            
           </td>
         </tr>
       </table>

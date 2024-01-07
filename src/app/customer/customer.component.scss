@@ -9,6 +9,15 @@ mat-card {
     padding-left: 0;
 }
 
+.headline {
+    padding-left: 16px;
+    display: flex;
+    justify-content: center;
+    font-size: 48px;
+    margin-top: 30px;
+    height: 80px;
+}
+
 .customer-table {
     width: 100%;
     border-collapse: collapse;

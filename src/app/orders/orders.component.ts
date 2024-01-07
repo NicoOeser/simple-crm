@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query, orderBy  } from '@angular/fire/firestore';
 import { DeleteOrderComponent } from '../delete-order/delete-order.component';
 import { DialogAddOrderComponent } from '../dialog-add-order/dialog-add-order.component';
+import { EditOrderComponent } from '../edit-order/edit-order.component';
 
 @Component({
   selector: 'app-orders',
@@ -38,6 +39,7 @@ export class OrdersComponent implements OnInit {
   }
 
   async getCustomers() {
+    // Füge die Logik zum Laden der Kunden hinzu
     const customerCollection = collection(this.firestore, 'customers');
     const q = query(customerCollection);
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -62,7 +64,8 @@ export class OrdersComponent implements OnInit {
   }
 
   async getProducts() {
-    const productCollection = collection(this.firestore, 'products'); 
+    // Füge die Logik zum Laden der Produkte hinzu
+    const productCollection = collection(this.firestore, 'products');
     const q = query(productCollection);
     const unsubscribe = onSnapshot(q, (snapshot) => {
       this.products = snapshot.docs.map((doc) => {
@@ -101,9 +104,27 @@ export class OrdersComponent implements OnInit {
     });
   }
 
-  openDialog() {
-    this.dialog.open(DialogAddOrderComponent);
+
+  openDialog(): void {
+    this.dialog.open(DialogAddOrderComponent, {
+      width: '600px',
+    });
   }
+
+  openEditDialog(orderId: string): void  {
+    const dialogRef = this.dialog.open(EditOrderComponent, {
+      width: '400px', 
+      data: { orderId: orderId, customers: this.customers, products: this.products } 
+    });
+  
+    dialogRef.componentInstance.order = this.allOrders.find(task => task.id === orderId);
+    dialogRef.componentInstance.orderId = orderId;
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The edit dialog was closed');
+    });
+  }
+  
 
  getCompanyName(customerId: string): string {
     const customer = this.customers.find(c => c.id === customerId);

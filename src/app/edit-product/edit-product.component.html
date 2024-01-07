@@ -1,0 +1,29 @@
+<section>
+
+    @if (isLoading) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>}
+
+    <div class="dialog-header">
+        <h1 mat-dialog-title>Add Customer</h1>
+    </div>
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Product</mat-label>
+                <input [disabled]="isLoading" matInput [(ngModel)]="product.productName">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Price</mat-label>
+                <input [disabled]="isLoading" matInput [(ngModel)]="product.productPrice">
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button [disabled]="isLoading" mat-button (click)="closeDialog()">Cancel</button>
+        <button [disabled]="isLoading" mat-button (click)="saveProduct()" cdkFocusInitial>Save</button>
+    </div>
+
+</section>
+  

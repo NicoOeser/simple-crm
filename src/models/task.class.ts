@@ -17,11 +17,11 @@ export class Task {
 
     public toJson() {
         return {
-            title: this.title,
-            date: this.date,
-            customer: this.customer,
-            status: this.status,
-            type: this.type,
-        }
-    }
+          title: this.title,
+          date: this.date,
+          customer: this.customer,
+          status: this.status,
+          type: this.type,
+        };
+      }
 }

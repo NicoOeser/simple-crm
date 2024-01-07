@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query, orderBy  } from '@angular/fire/firestore';
 import { DeleteTaskComponent } from '../delete-task/delete-task.component';
 import { DialogAddTaskComponent } from '../dialog-add-task/dialog-add-task.component';
+import { EditTaskComponent } from '../edit-task/edit-task.component';
 
 @Component({
   selector: 'app-task',
@@ -24,6 +25,7 @@ import { DialogAddTaskComponent } from '../dialog-add-task/dialog-add-task.compo
 export class TaskComponent implements OnInit {
   task = new Task();
   allTasks = Array();
+  date!: Date;
   customers: any[] = [];
   sortIcon: string = 'filter_list';
 
@@ -51,7 +53,7 @@ export class TaskComponent implements OnInit {
       this.allTasks = snapshot.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
-      this.sortByTitle(); // Standardmäßig nach Titel sortieren
+      this.sortByTitle();
     });
   }
 
@@ -78,15 +80,33 @@ export class TaskComponent implements OnInit {
     }
   }
 
-  openDeleteDialog(taskId: string): void {
+  openDeleteDialog(event: Event, taskId: string): void {
+    event.stopPropagation();
     console.log('Opening delete dialog with taskId:', taskId);
     this.dialog.open(DeleteTaskComponent, {
       data: { taskId: taskId }
     });
   }
 
-  openDialog() {
-    this.dialog.open(DialogAddTaskComponent);
+  openEditDialog(taskId: string): void  {
+    const dialogRef = this.dialog.open(EditTaskComponent, {
+      width: '400px', 
+      data: { taskId: taskId, customers: this.customers } 
+    });
+  
+    dialogRef.componentInstance.task = this.allTasks.find(task => task.id === taskId);
+    dialogRef.componentInstance.taskId = taskId;
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The edit dialog was closed');
+    });
+  }
+  
+
+  openDialog(): void {
+    this.dialog.open(DialogAddTaskComponent, {
+      width: '600px',
+    });
   }
 
   getCustomerName(customerId: string): string {

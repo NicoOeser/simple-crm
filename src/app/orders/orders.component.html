@@ -1,6 +1,9 @@
 <section>
+<mat-card class="headline">
+    Orders
+</mat-card>
 
-    <mat-card>
+    <mat-card class="mt-52">
 
         <table class="order-table">
             <tr>
@@ -16,7 +19,7 @@
                 <th>Status</th>
                 <th></th>
             </tr>
-            <tr *ngFor="let order of allOrders">
+            <tr *ngFor="let order of allOrders" (click)="openEditDialog(order.id)">
                 <td>{{ getProductName(order.product) }}</td>
                 <td>{{ getCompanyName(order.company) }}</td>
                 <td>{{ order.pieces}}</td>
