@@ -5,6 +5,8 @@ export class Order {
     pieces: string;
     price: string;
     status: string;
+    total: string;
+
 
 
 
@@ -16,6 +18,7 @@ export class Order {
         this.pieces = obj ? obj.pieces : '';
         this.price = obj ? obj.price : '';
         this.status = obj ? obj.status : '';
+        this.total = obj ? obj.total : '0.00';
     }
 
     public toJson() {
@@ -26,6 +29,7 @@ export class Order {
             pieces: this.pieces,
             price: this.price,
             status: this.status,
+            total: this.total,
         }
     }
 }

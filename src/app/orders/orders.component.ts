@@ -10,7 +10,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Order } from '../../models/order.class';
 import { MatCardModule } from '@angular/material/card';
-import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query, orderBy  } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot, query, orderBy, limit, updateDoc, doc } from '@angular/fire/firestore';
 import { DeleteOrderComponent } from '../delete-order/delete-order.component';
 import { DialogAddOrderComponent } from '../dialog-add-order/dialog-add-order.component';
 import { EditOrderComponent } from '../edit-order/edit-order.component';
@@ -30,16 +30,17 @@ export class OrdersComponent implements OnInit {
   products: any[] = [];
   sortIcon: string = 'filter_list';
 
-  constructor(public dialog: MatDialog, private firestore: Firestore, private router: Router) { }
+
+  constructor(public dialog: MatDialog, private firestore: Firestore, private router: Router, ) { }
 
   ngOnInit() {
     this.getOrders();
     this.getCustomers();
     this.getProducts();
+
   }
 
   async getCustomers() {
-    // Füge die Logik zum Laden der Kunden hinzu
     const customerCollection = collection(this.firestore, 'customers');
     const q = query(customerCollection);
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -64,7 +65,6 @@ export class OrdersComponent implements OnInit {
   }
 
   async getProducts() {
-    // Füge die Logik zum Laden der Produkte hinzu
     const productCollection = collection(this.firestore, 'products');
     const q = query(productCollection);
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -122,9 +122,20 @@ export class OrdersComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe(result => {
       console.log('The edit dialog was closed');
+      this.updateTotalInDatabase(orderId);
     });
   }
   
+  private updateTotalInDatabase(orderId: string): void {
+    const order = this.allOrders.find(o => o.id === orderId);
+    if (order) {
+      const total = this.calculateTotal(order.pieces, order.product);
+      // Hier die Logik, um das Total in der Datenbank zu aktualisieren
+      // Beispiel:
+      const orderRef = doc(collection(this.firestore, 'orders'), orderId);
+      updateDoc(orderRef, { total: total });
+    }
+  }
 
  getCompanyName(customerId: string): string {
     const customer = this.customers.find(c => c.id === customerId);
@@ -153,9 +164,9 @@ export class OrdersComponent implements OnInit {
   }
 
   calculateTotal(pieces: string, productId: string): string {
-    const productPrice = parseFloat(this.getProductPrice(productId).replace(',', '.')); // Konvertiere den Preis in einen Dezimalwert
+    const productPrice = parseFloat(this.getProductPrice(productId).replace(',', '.')); 
     const total = parseInt(pieces) * productPrice;
-    return total.toFixed(2); // Zeige den Gesamtbetrag auf zwei Dezimalstellen an
+    return total.toFixed(2); 
 }
 }
 

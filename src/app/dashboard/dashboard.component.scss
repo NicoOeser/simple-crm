@@ -1,0 +1,163 @@
+
+mat-card {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.headline {
+    padding-left: 16px;
+    display: flex;
+    justify-content: center;
+    font-size: 48px;
+    margin-top: 8px;
+    height: 80px;
+}
+
+.dashboard-container {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 16px;
+    padding: 16px;
+
+
+    .dashboard-grid-four {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+
+    .dashboard-grid-two {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .dashboard-grid-one {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 16px;
+    }
+}
+
+
+
+.sales-card {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    .sales-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #3E7328;
+        color: #fff;
+        padding: 16px;
+    }
+
+    .sales-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .sales-title {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .sales-details {
+        margin-top: 8px;
+    }
+}
+
+.offer-card, 
+.order-card {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    .offer-content,
+    .order-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .offer-title, 
+    .order-title {
+        font-size: 1.5em;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .overview-details {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+    }
+
+    
+    .offer-chart,
+    .order-sales {
+        margin-top: 8px;
+        
+    }
+
+
+    .order-table {
+        width: 100%;
+        border-collapse: collapse;
+    
+        tr {
+            height: 40px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    
+            &:first-child {
+                cursor: unset;
+    
+                &:hover {
+                    background-color: unset;
+                }
+            }
+    
+            &:last-child {
+                border-bottom: 0;
+            }
+    
+            &:hover {
+                background-color: rgba(63, 81, 181, 0.08);
+            }
+    
+            th {
+                background-color: #3E7328;
+                color: white;
+                font-size: 18px;
+                font-weight: 500;
+                text-align: start;
+    
+                &:first-child {
+                    padding-left: 16px;
+                }
+            }
+    
+            td {
+                color: white;
+                font-size: 14px;
+                font-weight: 500;
+                text-align: start;
+    
+                &:first-child {
+                    padding-left: 16px;
+                }
+            }
+        }
+    }

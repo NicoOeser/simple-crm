@@ -6,22 +6,21 @@
     <mat-card class="mt-52">
     <table class="customer-table">
       <tr>
-        <th>
-          Name
+        <th>Company
           <button mat-button (click)="sortByName()">
-            <mat-icon>filter_list</mat-icon>
-          </button>
+          <mat-icon>filter_list</mat-icon>
+        </button>
         </th>
+        <th>Name</th>
         <th>E-Mail</th>
         <th>Phone</th>
-        <th>Company</th>
         <th></th>
       </tr>
       <tr *ngFor="let customer of allCustomers" (click)="navigateToCustomer(customer.id)">
+        <td>{{ customer.company }}</td>
         <td>{{ customer.firstName }} {{ customer.lastName }}</td>
         <td>{{ customer.email }}</td>
-        <td>{{ customer.phoneNo }}</td>
-        <td>{{ customer.company }}</td>
+        <td>{{ customer.phoneNo }}</td>       
         <td>
           <button class="delete-btn" mat-button (click)="openDeleteDialog(customer.id)">
             <mat-icon>delete</mat-icon>

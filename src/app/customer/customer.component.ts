@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FirestoreService } from '../services/firestore.service'; 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -26,22 +27,16 @@ export class CustomerComponent implements OnInit {
   allCustomers = Array();
   sortIcon: string = 'filter_list';
 
-  constructor(public dialog: MatDialog, private firestore: Firestore, private router: Router) { }
+  constructor(public dialog: MatDialog, private firestore: Firestore, private router: Router, private firestoreService: FirestoreService) { }
 
   ngOnInit() {
     this.getCustomers();
-
   }
 
   async getCustomers() {
-    const customerCollection = collection(this.firestore, 'customers');
-    const q = query(customerCollection);
-    const orderByField = 'firstName'; // Standard-Sortierfeld (Name)
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      this.allCustomers = snapshot.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() };
-      });
-      this.sortByName(); // Standardmäßig nach Name sortieren
+    this.firestoreService.getCustomers().subscribe((customers) => {
+      this.allCustomers = customers;
+      this.sortByName(); 
     });
   }
 
@@ -59,7 +54,7 @@ export class CustomerComponent implements OnInit {
   }
 
   sortByName() {
-    const orderByField = 'firstName';
+    const orderByField = 'company';
     const sortedCustomers = [...this.allCustomers];
     sortedCustomers.sort((a, b) => {
       if (a[orderByField] < b[orderByField]) {
