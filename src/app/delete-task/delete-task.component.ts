@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Task } from '../../models/task.class';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Firestore, deleteDoc, doc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';

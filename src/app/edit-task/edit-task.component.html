@@ -1,86 +1,86 @@
 <section>
 
-    @if (isLoading) {
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>}
-  
-    <div class="dialog-header">
-      <h1 mat-dialog-title>Edit Task</h1>
+  @if (isLoading) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>}
+
+  <div class="dialog-header">
+    <h1 mat-dialog-title>Edit Task</h1>
+  </div>
+  <div mat-dialog-content>
+    <div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Title</mat-label>
+        <input [disabled]="isLoading" matInput [(ngModel)]="task.title">
+      </mat-form-field>
     </div>
-    <div mat-dialog-content>
-      <div>
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Title</mat-label>
-          <input [disabled]="isLoading" matInput [(ngModel)]="task.title">
-        </mat-form-field>
-      </div>
-  
-      <div>
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Due Date</mat-label>
-          <input [disabled]="isLoading" matInput [matDatepicker]="picker1" [(ngModel)]="date">
-          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Customer</mat-label>
-          <mat-select [disabled]="isLoading" [(ngModel)]="task.customer" matInput>
-            <mat-option *ngFor="let customer of customers" [value]="customer.id">
-              <mat-icon>person</mat-icon>
-              {{ customer.firstName }} {{ customer.lastName }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Task Status</mat-label>
-          <mat-select [disabled]="isLoading" [(ngModel)]="task.status" matInput>
-            <mat-option value="option1">
-              <mat-icon>access_time</mat-icon>
-              Not Started
-            </mat-option>
-            <mat-option value="option2">
-              <mat-icon>hourglass_bottom</mat-icon>
-              In Progress
-            </mat-option>
-            <mat-option value="option3">
-              <mat-icon>check</mat-icon>
-              Complete
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Task Type</mat-label>
-          <mat-select [disabled]="isLoading" [(ngModel)]="task.type" matInput>
-            <mat-option value="option1">
-              <mat-icon>event</mat-icon>
-              Meeting
-            </mat-option>
-            <mat-option value="option2">
-              <mat-icon>videocam</mat-icon>
-              Online Meeting
-            </mat-option>
-            <mat-option value="option3">
-              <mat-icon>phone</mat-icon>
-              Call
-            </mat-option>
-            <mat-option value="option4">
-              <mat-icon>email</mat-icon>
-              Email
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+
+    <div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Due Date</mat-label>
+        <input [disabled]="isLoading" matInput [matDatepicker]="picker1" [(ngModel)]="date">
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
     </div>
-    <div mat-dialog-actions>
-      <button [disabled]="isLoading" mat-button (click)="closeDialog()">Cancel</button>
-      <button [disabled]="isLoading || !isFormValid()" mat-button (click)="saveTask()">Save</button>
-  
-  
+    <div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Customer</mat-label>
+        <mat-select [disabled]="isLoading" [(ngModel)]="task.customer" matInput>
+          <mat-option *ngFor="let customer of customers" [value]="customer.id">
+            <mat-icon>person</mat-icon>
+            {{ customer.firstName }} {{ customer.lastName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-  
-  </section>
+    <div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Task Status</mat-label>
+        <mat-select [disabled]="isLoading" [(ngModel)]="task.status" matInput>
+          <mat-option value="option1">
+            <mat-icon>access_time</mat-icon>
+            Not Started
+          </mat-option>
+          <mat-option value="option2">
+            <mat-icon>hourglass_bottom</mat-icon>
+            In Progress
+          </mat-option>
+          <mat-option value="option3">
+            <mat-icon>check</mat-icon>
+            Complete
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Task Type</mat-label>
+        <mat-select [disabled]="isLoading" [(ngModel)]="task.type" matInput>
+          <mat-option value="option1">
+            <mat-icon>event</mat-icon>
+            Meeting
+          </mat-option>
+          <mat-option value="option2">
+            <mat-icon>videocam</mat-icon>
+            Online Meeting
+          </mat-option>
+          <mat-option value="option3">
+            <mat-icon>phone</mat-icon>
+            Call
+          </mat-option>
+          <mat-option value="option4">
+            <mat-icon>email</mat-icon>
+            Email
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button [disabled]="isLoading" mat-button (click)="closeDialog()">Cancel</button>
+    <button [disabled]="isLoading || !isFormValid()" mat-button (click)="saveTask()">Save</button>
+
+
+  </div>
+
+</section>

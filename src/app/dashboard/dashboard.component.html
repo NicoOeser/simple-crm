@@ -1,115 +1,116 @@
+<mat-card class="headline">
+    Dashboard
+</mat-card>
 
-    <mat-card class="headline">
-        Dashboard
-    </mat-card>
+<div class="dashboard-container">
+    <div class="dashboard-grid-four">
+        <!-- Erste Zeile -->
+        <mat-card class="sales-card">
+            <div class="sales-icon">
+                <mat-icon>euro_symbol</mat-icon>
+            </div>
+            <div class="sales-content">
+                <div class="sales-title">
+                    Sales
+                </div>
+                <div class="sales-details">
+                    Total Sales: {{ totalSales }}
+                </div>
+            </div>
+        </mat-card>
 
-    <div class="dashboard-container">
-        <div class="dashboard-grid-four">
-            <!-- Erste Zeile -->
-            <mat-card class="sales-card">
-                <div class="sales-icon">
-                    <mat-icon>euro_symbol</mat-icon>
+        <mat-card class="sales-card">
+            <div class="sales-icon">
+                <mat-icon>local_offer</mat-icon>
+            </div>
+            <div class="sales-content">
+                <div class="sales-title">
+                    Offers
                 </div>
-                <div class="sales-content">
-                    <div class="sales-title">
-                        Sales
-                    </div>
-                    <div class="sales-details">
-                        Total Sales: {{ totalSales }}
-                    </div>
+                <div class="sales-details">
+                    Total Offers: {{ totalOffers }}
                 </div>
-            </mat-card>
-
-            <mat-card class="sales-card">
-                <div class="sales-icon">
-                    <mat-icon>local_offer</mat-icon>
-                </div>
-                <div class="sales-content">
-                    <div class="sales-title">
-                        Offers
-                    </div>
-                    <div class="sales-details">
-                        Total Offers: {{ totalOffers }}
-                    </div>
-                </div>
-            </mat-card>
+            </div>
+        </mat-card>
 
 
-            <mat-card class="sales-card">
-                <div class="sales-icon">
-                    <mat-icon>pallet</mat-icon>
+        <mat-card class="sales-card">
+            <div class="sales-icon">
+                <mat-icon>pallet</mat-icon>
+            </div>
+            <div class="sales-content">
+                <div class="sales-title">
+                    Products
                 </div>
-                <div class="sales-content">
-                    <div class="sales-title">
-                        Products
-                    </div>
-                    <div class="sales-details">
-                        Total Products: {{ totalProducts }}
-                    </div>
+                <div class="sales-details">
+                    Total Products: {{ totalProducts }}
                 </div>
-            </mat-card>
+            </div>
+        </mat-card>
 
-            <mat-card class="sales-card">
-                <div class="sales-icon">
-                    <mat-icon>perm_contact_calendar</mat-icon>
+        <mat-card class="sales-card">
+            <div class="sales-icon">
+                <mat-icon>perm_contact_calendar</mat-icon>
+            </div>
+            <div class="sales-content">
+                <div class="sales-title">
+                    Customer
                 </div>
-                <div class="sales-content">
-                    <div class="sales-title">
-                        Customer
-                    </div>
-                    <div class="sales-details">
-                        Total Customers: {{ totalCustomers }}
-                    </div>
+                <div class="sales-details">
+                    Total Customers: {{ totalCustomers }}
                 </div>
-            </mat-card>
-        </div>
-
-        <div class="dashboard-grid-two">
-            <mat-card class="offer-card">
-                <div class="offer-content">
-                    <div class="offer-title">
-                        Overview of sales and offers
-                    </div>
-                    <div class="overview-details">(Show details when hovering over with the cursor)</div>
-                    <div class="offer-chart">
-                        <canvas id="barChart"></canvas>
-                    </div>
-                </div>
-            </mat-card>
-            <mat-card class="offer-card">
-                <div class="offer-content">
-                    <div class="offer-title">
-                        Overview of quantity sold per product
-                    </div>
-                    <div class="overview-details">(Show details when hovering over with the cursor)</div>
-                    <div class="offer-chart">
-                        <canvas id="pieChart"></canvas>
-                    </div>
-                </div>
-            </mat-card>
-        </div>
-
-        <div class="dashboard-grid-one">
-            <!-- Dritte Zeile -->
-            <mat-card class="order-card">
-                <div class="order-content">
-                    <div class="offer-title">
-                        The last three sales
-                    </div>
-                    <div class="order-sales">
-                        <table class="order-table">
-                            <tr>
-                                <th>Product</th>
-                                <th>Pieces</th>
-                                <th>Total</th>
-                            </tr>
-                            <tr *ngFor="let product of lastThreeSoldProducts">
-                                <td>{{ product.name }}</td>
-                                <td>{{ product.pieces }}</td>
-                                <td>{{ product.total }}</td>
-                        </table>
-                    </div>
-                </div>
-            </mat-card>
-        </div>
+            </div>
+        </mat-card>
     </div>
+
+    <div class="dashboard-grid-two">
+        <mat-card class="offer-card">
+
+            <div class="offer-content">
+                <div class="offer-title">
+                    Overview of sales and offers
+                </div>
+                <div class="overview-details">(Show details when hovering over with the cursor)</div>
+                <div class="offer-chart">
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+        </mat-card>
+        <mat-card class="offer-card">
+
+            <div class="offer-content">
+                <div class="offer-title">
+                    Overview of quantity sold per product
+                </div>
+                <div class="overview-details">(Show details when hovering over with the cursor)</div>
+                <div class="offer-chart">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+
+    <div class="dashboard-grid-one">
+        <!-- Dritte Zeile -->
+        <mat-card class="order-card">
+            <div class="order-content">
+                <div class="offer-title">
+                    The last three sales
+                </div>
+                <div class="order-sales">
+                    <table class="order-table">
+                        <tr>
+                            <th>Product</th>
+                            <th>Pieces</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr *ngFor="let product of lastThreeSoldProducts">
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.pieces }}</td>
+                            <td>{{ product.total }}</td>
+                    </table>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>

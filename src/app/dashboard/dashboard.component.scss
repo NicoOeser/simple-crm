@@ -9,7 +9,6 @@ mat-card {
     display: flex;
     justify-content: center;
     font-size: 48px;
-    margin-top: 8px;
     height: 80px;
 }
 
@@ -30,7 +29,7 @@ mat-card {
 
     .dashboard-grid-two {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
     }
 
@@ -109,9 +108,12 @@ mat-card {
     .offer-chart,
     .order-sales {
         margin-top: 8px;
-        
+        width: 100%;
     }
 
+    .offer-chart canvas {
+        max-width: 100%; 
+    }
 
     .order-table {
         width: 100%;
@@ -160,4 +162,4 @@ mat-card {
                 }
             }
         }
-    }
+}

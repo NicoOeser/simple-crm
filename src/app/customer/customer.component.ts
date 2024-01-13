@@ -12,7 +12,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Customer} from "../../models/customer.class";
 import { MatCardModule } from '@angular/material/card';
-import { Firestore, collection, onSnapshot, query } from '@angular/fire/firestore';
+import { Firestore} from '@angular/fire/firestore';
 import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
 
 @Component({

@@ -2,14 +2,14 @@
 
   <mat-card class="headline">
     Customers
-</mat-card>
-    <mat-card class="mt-52">
+  </mat-card>
+  <mat-card class="mt-52">
     <table class="customer-table">
       <tr>
         <th>Company
           <button mat-button (click)="sortByName()">
-          <mat-icon>filter_list</mat-icon>
-        </button>
+            <mat-icon>filter_list</mat-icon>
+          </button>
         </th>
         <th>Name</th>
         <th>E-Mail</th>
@@ -20,7 +20,7 @@
         <td>{{ customer.company }}</td>
         <td>{{ customer.firstName }} {{ customer.lastName }}</td>
         <td>{{ customer.email }}</td>
-        <td>{{ customer.phoneNo }}</td>       
+        <td>{{ customer.phoneNo }}</td>
         <td>
           <button class="delete-btn" mat-button (click)="openDeleteDialog(customer.id)">
             <mat-icon>delete</mat-icon>
@@ -29,12 +29,12 @@
       </tr>
     </table>
   </mat-card>
-  
-  
-  
-    <button (click)="openDialog()" class="add-customer-btn" mat-fab color="primary" matTooltip="Add new Customer"
-      [matTooltipPosition]="'above'">
-      <mat-icon>plus_one</mat-icon>
-    </button>
-  
-  </section>
+
+
+
+  <button (click)="openDialog()" class="add-customer-btn" mat-fab color="primary" matTooltip="Add new Customer"
+    [matTooltipPosition]="'above'">
+    <mat-icon>plus_one</mat-icon>
+  </button>
+
+</section>

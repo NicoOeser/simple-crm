@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { Customer } from "../../models/customer.class";
 import { FormsModule } from '@angular/forms';
-import { Firestore, collection, collectionData, addDoc, doc, getDoc, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, } from '@angular/fire/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({

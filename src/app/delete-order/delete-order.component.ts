@@ -3,8 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Customer } from '../../models/customer.class';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Firestore, deleteDoc, doc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
@@ -20,7 +19,6 @@ import { Router } from '@angular/router';
 export class DeleteOrderComponent {
   orderId!: string;
 
-
   constructor(
     public dialogRef: MatDialogRef<DeleteOrderComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { orderId: string },
@@ -34,7 +32,6 @@ export class DeleteOrderComponent {
     if (!this.orderId) {
       return;
     }
-
     try {
       const orderRef = doc(this.firestore, 'orders', this.orderId);
       await deleteDoc(orderRef);

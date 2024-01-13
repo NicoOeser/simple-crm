@@ -1,45 +1,45 @@
 <section>
 
   <mat-card class="headline">
-   Tasks
-</mat-card>
-    <mat-card class="mt-52">
-  
-      <table class="task-table">
-        <tr>
-          <th>Title
-            <button mat-button (click)="sortByTitle()">
-              <mat-icon>filter_list</mat-icon>
-            </button>
-          </th>
-          <th>Due Date</th>
-          <th>Customer</th>
-          <th>Task Status</th>
-          <th>Task Type</th>
-          <th></th>
+    Tasks
+  </mat-card>
+  <mat-card class="mt-52">
 
-        </tr>
-        <tr *ngFor="let task of allTasks" (click)="openEditDialog(task.id)">
-          <td>{{ task.title }}</td>
-          <td>{{ task.date.toDate() | date: 'dd/MM/yyyy' }}</td>
-          <td>{{ getCustomerName(task.customer) }}</td>
-          <td>{{ getStatusName(task.status) }}</td>
-          <td>{{ getTypeName(task.type) }}</td>
-          <td>
-            <button class="delete-btn" mat-button (click)="openDeleteDialog($event, task.id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-            
-          </td>
-        </tr>
-      </table>
-  
-    </mat-card>
-  
-  
-    <button (click)="openDialog()" class="add-task-btn" mat-fab color="primary" matTooltip="Add new Task"
-      [matTooltipPosition]="'above'">
-      <mat-icon>plus_one</mat-icon>
-    </button>
-  
-  </section>
+    <table class="task-table">
+      <tr>
+        <th>Title
+          <button mat-button (click)="sortByTitle()">
+            <mat-icon>filter_list</mat-icon>
+          </button>
+        </th>
+        <th>Due Date</th>
+        <th>Customer</th>
+        <th>Task Status</th>
+        <th>Task Type</th>
+        <th></th>
+
+      </tr>
+      <tr *ngFor="let task of allTasks" (click)="openEditDialog(task.id)">
+        <td>{{ task.title }}</td>
+        <td>{{ task.date.toDate() | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ getCustomerName(task.customer) }}</td>
+        <td>{{ getStatusName(task.status) }}</td>
+        <td>{{ getTypeName(task.type) }}</td>
+        <td>
+          <button class="delete-btn" mat-button (click)="openDeleteDialog($event, task.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </td>
+      </tr>
+    </table>
+
+  </mat-card>
+
+
+  <button (click)="openDialog()" class="add-task-btn" mat-fab color="primary" matTooltip="Add new Task"
+    [matTooltipPosition]="'above'">
+    <mat-icon>plus_one</mat-icon>
+  </button>
+
+</section>

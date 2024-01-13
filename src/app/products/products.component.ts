@@ -10,7 +10,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Product } from "../../models/product.class";
 import { MatCardModule } from '@angular/material/card';
-import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot, query } from '@angular/fire/firestore';
 import { DeleteProductComponent } from '../delete-product/delete-product.component';
 import { DialogAddProductComponent } from '../dialog-add-product/dialog-add-product.component';
 import { EditProductComponent } from '../edit-product/edit-product.component';
@@ -47,7 +47,6 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-
   sortByProduct() {
     const orderByField = 'productName';
     const sortedProducts = [...this.allProducts];
@@ -73,7 +72,6 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['/product', productId]);
   }
 
-
   openDeleteDialog(productId: string): void {
     console.log('Opening delete dialog with customerId:', productId);
     const dialogRef = this.dialog.open(DeleteProductComponent, {
@@ -86,15 +84,12 @@ export class ProductsComponent implements OnInit {
       width: '400px', 
       data: { productId: productId} 
     });
-  
     dialogRef.componentInstance.product = this.allProducts.find(task => task.id === productId);
     dialogRef.componentInstance.productId = productId;
-  
     dialogRef.afterClosed().subscribe(result => {
       console.log('The edit dialog was closed');
     });
   }
-
 
   openDialog(): void {
     this.dialog.open(DialogAddProductComponent, {

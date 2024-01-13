@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Customer } from '../../models/customer.class';
-import { Firestore, collection, doc, getDoc, getDocFromServer, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, doc,  onSnapshot } from '@angular/fire/firestore';
 import { MatCardModule } from '@angular/material/card';
-import { DialogAddCustomerComponent } from '../dialog-add-customer/dialog-add-customer.component';
-import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import {  MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';

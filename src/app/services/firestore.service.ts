@@ -43,5 +43,6 @@ export class FirestoreService {
       map((productDoc) => ({ id: productDoc.id, ...productDoc.data() }))
     );
   }
+
 }
 

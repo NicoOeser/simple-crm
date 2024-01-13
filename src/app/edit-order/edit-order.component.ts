@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialogModule, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { Order } from '../../models/order.class';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -41,15 +41,14 @@ export class EditOrderComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EditOrderComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.orderId = data.orderId;
-    this.products = data.products; // Hinzugefügt: Lade Produkte aus dem übergebenen Datenobjekt
+    this.products = data.products; 
   }
 
   async ngOnInit() {
-    await this.getCustomers(); // Lade Kundeninformationen beim Initialisieren der Komponente
+    await this.getCustomers(); 
   }
 
   async getCustomers() {
-    // Füge die Logik zum Laden der Kunden hinzu
     const customerCollection = collection(this.firestore, 'customers');
     const q = query(customerCollection);
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -62,8 +61,6 @@ export class EditOrderComponent implements OnInit {
   async saveOrder() {
     this.isLoading = true;
     const orderRef = doc(this.firestore, 'orders', this.orderId);
-
-    // Konvertiere this.order in ein generisches Objekt
     const updateData: { [key: string]: any } = {
       product: this.order.product,
       company: this.order.company,

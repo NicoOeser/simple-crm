@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDialogModule, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Task } from "../../models/task.class";
 import { MatCardModule } from '@angular/material/card';
-import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query, orderBy  } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot, query, } from '@angular/fire/firestore';
 import { DeleteTaskComponent } from '../delete-task/delete-task.component';
 import { DialogAddTaskComponent } from '../dialog-add-task/dialog-add-task.component';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
@@ -93,10 +93,8 @@ export class TaskComponent implements OnInit {
       width: '400px', 
       data: { taskId: taskId, customers: this.customers } 
     });
-  
     dialogRef.componentInstance.task = this.allTasks.find(task => task.id === taskId);
     dialogRef.componentInstance.taskId = taskId;
-  
     dialogRef.afterClosed().subscribe(result => {
       console.log('The edit dialog was closed');
     });

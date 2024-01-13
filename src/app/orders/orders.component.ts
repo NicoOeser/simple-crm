@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDialogModule, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogModule, MatDialog, } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Order } from '../../models/order.class';
 import { MatCardModule } from '@angular/material/card';
-import { Firestore, collection, onSnapshot, query, orderBy, limit, updateDoc, doc } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot, query, updateDoc, doc } from '@angular/fire/firestore';
 import { DeleteOrderComponent } from '../delete-order/delete-order.component';
 import { DialogAddOrderComponent } from '../dialog-add-order/dialog-add-order.component';
 import { EditOrderComponent } from '../edit-order/edit-order.component';
@@ -116,10 +116,8 @@ export class OrdersComponent implements OnInit {
       width: '400px', 
       data: { orderId: orderId, customers: this.customers, products: this.products } 
     });
-  
     dialogRef.componentInstance.order = this.allOrders.find(task => task.id === orderId);
     dialogRef.componentInstance.orderId = orderId;
-  
     dialogRef.afterClosed().subscribe(result => {
       console.log('The edit dialog was closed');
       this.updateTotalInDatabase(orderId);
@@ -130,8 +128,6 @@ export class OrdersComponent implements OnInit {
     const order = this.allOrders.find(o => o.id === orderId);
     if (order) {
       const total = this.calculateTotal(order.pieces, order.product);
-      // Hier die Logik, um das Total in der Datenbank zu aktualisieren
-      // Beispiel:
       const orderRef = doc(collection(this.firestore, 'orders'), orderId);
       updateDoc(orderRef, { total: total });
     }

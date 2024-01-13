@@ -1,63 +1,63 @@
 <section>
 
-    @if (isLoading) {
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>}
+  @if (isLoading) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>}
 
-    <div class="dialog-header">
-        <h1 mat-dialog-title>Add Task</h1>
+  <div class="dialog-header">
+    <h1 mat-dialog-title>Add Task</h1>
+  </div>
+  <div mat-dialog-content>
+    <div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Product</mat-label>
+        <mat-select [disabled]="isLoading" [(ngModel)]="order.product" (ngModelChange)="updatePrice()" matInput>
+          <mat-option *ngFor="let product of products" [value]="product.id">
+            <mat-icon>pallet</mat-icon>
+            {{ product.productName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <div mat-dialog-content>
-      <div>
-        <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Product</mat-label>
-            <mat-select [disabled]="isLoading" [(ngModel)]="order.product" (ngModelChange)="updatePrice()" matInput>
-                <mat-option *ngFor="let product of products" [value]="product.id">
-                    <mat-icon>pallet</mat-icon>
-                    {{ product.productName }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-        <div>
-            <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Company</mat-label>
-                <mat-select [disabled]="isLoading" [(ngModel)]="order.company" matInput>
-                  <mat-option *ngFor="let customer of customers" [value]="customer.id">
-                    <mat-icon>business</mat-icon>
-                    {{ customer.company }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              
-        </div>
-        <div>
-            <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Pieces</mat-label>
-                <input [disabled]="isLoading" matInput [(ngModel)]="order.pieces">
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Order Status</mat-label>
-              <mat-select [disabled]="isLoading" [(ngModel)]="order.status" matInput>
-                <mat-option value="option1">
-                  <mat-icon>local_offer</mat-icon>
-                  Offer
-                </mat-option>
-                <mat-option value="option2">
-                  <mat-icon>euro_symbol</mat-icon>
-                  Sold
-                </mat-option>
+    <div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Company</mat-label>
+        <mat-select [disabled]="isLoading" [(ngModel)]="order.company" matInput>
+          <mat-option *ngFor="let customer of customers" [value]="customer.id">
+            <mat-icon>business</mat-icon>
+            {{ customer.company }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-              </mat-select>
-            </mat-form-field>
-          </div>
     </div>
-    <div mat-dialog-actions>
-        <button [disabled]="isLoading" mat-button (click)="closeDialog()">Cancel</button>
-        <button [disabled]="isLoading" mat-button (click)="saveOrder()">Save</button>
-    
-    
-      </div>
+    <div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Pieces</mat-label>
+        <input [disabled]="isLoading" matInput [(ngModel)]="order.pieces">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Order Status</mat-label>
+        <mat-select [disabled]="isLoading" [(ngModel)]="order.status" matInput>
+          <mat-option value="option1">
+            <mat-icon>local_offer</mat-icon>
+            Offer
+          </mat-option>
+          <mat-option value="option2">
+            <mat-icon>euro_symbol</mat-icon>
+            Sold
+          </mat-option>
+
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button [disabled]="isLoading" mat-button (click)="closeDialog()">Cancel</button>
+    <button [disabled]="isLoading" mat-button (click)="saveOrder()">Save</button>
+
+
+  </div>
 
 </section>
