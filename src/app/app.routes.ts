@@ -6,6 +6,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
+import { ImprintComponent } from './imprint/imprint.component';
 
 export const routes: Routes = [
     { path: '', component: DashboardComponent, },
@@ -15,6 +16,6 @@ export const routes: Routes = [
     { path: 'product', component: ProductsComponent, },
     { path: 'task', component: TaskComponent, },
     { path: 'order', component: OrdersComponent, },
-
+    { path: 'imprint', component:ImprintComponent, },
 ];
 
